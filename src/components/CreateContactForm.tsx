@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "../store/slices/contactsSlice";
 
 interface CreateContactFormProps {}
 
@@ -22,6 +24,8 @@ const CreateContactForm: React.FC<CreateContactFormProps> = () => {
     errorText: "",
   });
 
+  const dispatch = useDispatch();
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError((prev) => {
       return { errorText: "" };
@@ -42,7 +46,7 @@ const CreateContactForm: React.FC<CreateContactFormProps> = () => {
         return { ...prev, errorText: "All text fields are required" };
       });
     }
-    console.log(form);
+    dispatch(addContact(form));
   };
 
   return (
