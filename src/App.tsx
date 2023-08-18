@@ -8,7 +8,7 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <>
-      <Header />
+      <Header text="Contact Page" />
       <div className="flex">
         <div className="basis-[12%] h-[100vh] border">
           <Sidebar />

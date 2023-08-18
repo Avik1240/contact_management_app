@@ -1,7 +1,17 @@
 import React from "react";
 
-const Header: React.FC = () => {
-  return <>Header</>;
+interface HeaderProps {
+  text: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ text }) => {
+  return (
+    <>
+      <div className="h-14 flex items-center justify-center bg-[#4640f0] text-white font-bold">
+        {text}
+      </div>
+    </>
+  );
 };
 
 export default Header;
