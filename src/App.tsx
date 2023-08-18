@@ -9,13 +9,19 @@ function App() {
   return (
     <>
       <Header />
-      <Sidebar />
-      <Routes>
-        <Route path="/">
-          <Route index={true} element={<ContactPage />} />
-          <Route path="charts" element={<ChartAndMapsPage />} />
-        </Route>
-      </Routes>
+      <div className="flex">
+        <div className="basis-[12%] h-[100vh] border">
+          <Sidebar />
+        </div>
+        <div className="basis-[88%]">
+          <Routes>
+            <Route path="/">
+              <Route index={true} element={<ContactPage />} />
+              <Route path="charts" element={<ChartAndMapsPage />} />
+            </Route>
+          </Routes>
+        </div>
+      </div>
     </>
   );
 }
