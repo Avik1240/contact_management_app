@@ -47,8 +47,11 @@ const CreateContactForm: React.FC<CreateContactFormProps> = () => {
 
   return (
     <>
+      <h1 className="flex flex-col justify-center items-center mt-6 text-4xl">
+        Create Contact Screen
+      </h1>
       <form
-        className="flex flex-col justify-center items-center mt-16 gap-8"
+        className="flex flex-col justify-center items-center mt-10 gap-8"
         onSubmit={submitHandler}
       >
         <label
@@ -80,24 +83,28 @@ const CreateContactForm: React.FC<CreateContactFormProps> = () => {
           className="flex justify-center items-center gap-3 mb-2 text-sm font-medium text-gray-900"
         >
           Status:
-          <input
-            className="d-"
-            type="radio"
-            value="active"
-            name="status"
-            checked={form?.status === "active" ? true : false}
-            onChange={handleInputChange}
-          />
-          Active
-          <input
-            className="p-10"
-            type="radio"
-            value="inactive"
-            name="status"
-            checked={form?.status === "inactive" ? true : false}
-            onChange={handleInputChange}
-          />
-          Inactive
+          <div className="flex flex-col gap-3">
+            <div>
+              <input
+                type="radio"
+                value="active"
+                name="status"
+                checked={form?.status === "active" ? true : false}
+                onChange={handleInputChange}
+              />{" "}
+              Active
+            </div>
+            <div>
+              <input
+                type="radio"
+                value="inactive"
+                name="status"
+                checked={form?.status === "inactive" ? true : false}
+                onChange={handleInputChange}
+              />{" "}
+              Inactive
+            </div>
+          </div>
         </label>
         {error?.errorText?.length > 0 && (
           <div className="text-red-600">{error?.errorText}</div>
