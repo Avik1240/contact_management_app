@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { ReactQueryDevtools } from "react-query/devtools";
 import ContactPage from "./pages/ContactPage";
 import ChartAndMapsPage from "./pages/ChartsAndMapsPage";
 import Header from "./components/Header";
@@ -23,6 +24,7 @@ function App() {
               <Route path="charts" element={<ChartAndMapsPage />} />
             </Route>
           </Routes>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </div>
       </div>
     </>

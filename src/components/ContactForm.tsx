@@ -63,6 +63,7 @@ const CreateContactForm: React.FC = () => {
       setError((prev) => {
         return { ...prev, errorText: "All text fields are required" };
       });
+      return;
     }
     if (id) {
       dispatch(updateContact(form));
