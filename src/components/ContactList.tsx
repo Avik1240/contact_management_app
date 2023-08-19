@@ -6,7 +6,7 @@ import { IFormState } from "./ContactForm";
 const ContactList: React.FC<contactListInitialState> = ({ contactList }) => {
   return (
     <>
-      <div>
+      <div className="flex items-center justify-center gap-8 flex-wrap">
         {contactList?.map((contact: IFormState) => {
           return <Card key={contact?.id} contact={contact} />;
         })}
