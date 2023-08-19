@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { MdCancel } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../store";
+import Header from "../components/Header";
 import ContactList from "../components/ContactList";
 
 const ContactPage: React.FC = () => {
@@ -11,9 +12,10 @@ const ContactPage: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center my-12 gap-44">
+      <Header text="Contact Page" />
+      <div className="flex flex-col justify-center items-center my-12 gap-10 p-4">
         <button
-          className="rounded-lg bg-blue-600 p-3 text-white"
+          className="rounded-lg bg-[#4e73df] p-3 text-white"
           onClick={() => navigate("/create-contact")}
         >
           Create Contact

@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <>
       <div className="max-w-sm rounded overflow-hidden shadow-lg">
-        <img className="" src={contactImg} alt="Sample Contact" />
+        <img className="h-1/2" src={contactImg} alt="Sample Contact" />
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">
             {props?.contact?.firstName} {props?.contact?.lastName}

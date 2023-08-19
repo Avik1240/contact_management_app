@@ -3,6 +3,7 @@ import axios from "axios";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useQuery } from "react-query";
 import LineGraph from "../components/LineGraph";
+import Header from "../components/Header";
 
 interface ICountryInfo {
   lat: number;
@@ -42,11 +43,12 @@ const ChartAndMapsPage: React.FC = () => {
 
   return (
     <>
+      <Header text="Charts and Maps Page" />
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-center my-6 font-bold text-lg">
           Charts & Maps Page
         </h1>
-        <div className="w-[1000px]">
+        <div className="w-full lg:w-[1000px]">
           <LineGraph />
         </div>
         <div className="w-[80%] h-[500px] bg-white p-1 my-8">

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { addContact, updateContact } from "../store/slices/contactsSlice";
 import { RootState } from "../store";
+import Header from "./Header";
 
 export interface IFormState {
   id: string;
@@ -75,7 +76,8 @@ const CreateContactForm: React.FC = () => {
 
   return (
     <>
-      <h1 className="flex flex-col justify-center items-center mt-6 text-4xl">
+      <Header text="Contact Page" />
+      <h1 className="flex flex-col justify-center items-center mt-6 text-4xl p-4">
         {id ? "Edit Contact Screen" : "Create Contact Screen"}
       </h1>
       <form

@@ -5,7 +5,7 @@ import { AiOutlineLineChart } from "react-icons/ai";
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="bg-[#4e73df] h-screen px-[25px]">
+    <div className="bg-[#4e73df] px-[25px]">
       <div className="px-[15px] py-[30px] flex items-center justify-center border-b-[1px] border-[#ededed]/[0.3]">
         <h1 className="text-white text-[20px] leading-[24px] font-extrabold cursor-pointer">
           <Link to="/">Sidebar</Link>
