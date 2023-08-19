@@ -1,46 +1,70 @@
-# Getting Started with Create React App
+# Taiyo.AI Assignment - Front End Engineer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Frontend Engineer Coding Task
 
-## Available Scripts
+This is a contact management app with Charts and Maps using ReactJS, TypeScript,
+TailwindCSS, React Router v6 and React Query aka TanstackQuery.
 
-In the project directory, you can run:
+Improvements are by no means exhaustive and are in no particular order.
 
-### `npm start`
+<!-- toc -->
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [API Used](#api-used)
+- [Usage](#usage)
+  - [Env Variables](#env-variables)
+  - [Install Dependencies after cloning](#install-dependencies-after-cloning)
+  - [Run](#run)
+- [Build & Deploy](#build--deploy)
+- [Improvements](#improvements)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## API Used
 
-### `npm test`
+https://disease.sh/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Country Specific data of cases: [link](https://disease.sh/v3/covid-19/countries).
+Graph data for cases with date:
+[link](https://disease.sh/v3/covid-19/historical/all?lastdays=all)
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Env Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+REACT_APP_ENV -> `development | production`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Install Dependencies after cloning
 
-### `npm run eject`
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Run
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Build & Deploy
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Create frontend production build
 
-## Learn More
+```
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Improvements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Shimmer UI instead of plain loading text, would enhance user experience.
+
+- Server Side Rendering on List Page (Main page) can take the burden off the client and improve performance.
+
+- Introduce Auth in this app so that users can login and save contacts either on server or in localstorage. Optimistic UI updates can be implemented to enhance user experience.
+
+- Scalability -> Because the risk of rendering a large DOM size is high, we can use "virtualized lists" within a container of limited height so that only the visible contacts are rendered.
+
+- Accessiblity -> Implementing ARIA attributes and roles can provide inclusive experience for people using screen-readers and performing keyboard interactions.
+
+- Preloading images, responsive images via srcSet attribute can also improve user experience.
+
+- Code splitting is not evident at this stage of development, but if the app ever gets bigger, it will also make sense to use React.lazy() and React Suspense to dynamically import components on-demand.
+
+- Add unit-tests and RTL DOM tests, include appropriate logging levels and implement this app as a PWA or SSR using Remix.js or NextJS.
