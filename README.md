@@ -21,9 +21,9 @@ Improvements are by no means exhaustive and are in no particular order.
 
 https://disease.sh/
 
-Country Specific data of cases: [link](https://disease.sh/v3/covid-19/countries).
+Country Specific data of cases: [link](https://disease.sh/v3/covid-19/countries) (used in map).
 Graph data for cases with date:
-[link](https://disease.sh/v3/covid-19/historical/all?lastdays=all)
+[link](https://disease.sh/v3/covid-19/historical/all?lastdays=all) (used in line chart).
 
 ## Usage
 
