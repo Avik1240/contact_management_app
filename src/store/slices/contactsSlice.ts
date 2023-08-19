@@ -18,10 +18,13 @@ export const contactsSlice = createSlice({
     },
     updateContact: (state, action: PayloadAction<IFormState>) => {
       state.contactList = state.contactList.map(contact => contact.id === action.payload.id ? action.payload : contact)
+    },
+    deleteContact: (state, action: PayloadAction<string>) => {
+      state.contactList = state.contactList.filter(contact => contact.id !== action.payload)
     }
   }
 })
 
-export const { addContact, updateContact } = contactsSlice.actions;
+export const { addContact, updateContact, deleteContact } = contactsSlice.actions;
 
 export default contactsSlice.reducer

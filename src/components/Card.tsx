@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { IFormState } from "./ContactForm";
 import contactImg from "../assets/images/contact.jpg";
+import { deleteContact } from "../store/slices/contactsSlice";
 
 interface CardProps {
   key: string;
@@ -10,6 +12,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -30,7 +33,10 @@ const Card: React.FC<CardProps> = (props) => {
           >
             Edit
           </button>
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => dispatch(deleteContact(props?.contact?.id))}
+          >
             Delete
           </button>
         </div>
