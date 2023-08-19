@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IFormState } from '../../components/ContactForm'
 
 export interface contactListInitialState {
   contactList: Array<any>;
@@ -12,12 +13,15 @@ export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
-    addContact: (state, action: PayloadAction<object>) => {
+    addContact: (state, action: PayloadAction<IFormState>) => {
       state.contactList = [...state.contactList, action.payload]
+    },
+    updateContact: (state, action: PayloadAction<IFormState>) => {
+      state.contactList = state.contactList.map(contact => contact.id === action.payload.id ? action.payload : contact)
     }
   }
 })
 
-export const { addContact } = contactsSlice.actions;
+export const { addContact, updateContact } = contactsSlice.actions;
 
 export default contactsSlice.reducer

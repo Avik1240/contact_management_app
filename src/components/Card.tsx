@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { IFormState } from "./ContactForm";
 import contactImg from "../assets/images/contact.jpg";
 
@@ -8,6 +9,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = (props) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -21,7 +24,10 @@ const Card: React.FC<CardProps> = (props) => {
           </p>
         </div>
         <div className="px-6 pt-4 pb-2 flex flex-col gap-3 justify-center items-center">
-          <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+          <button
+            className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => navigate(`/edit-contact/${props?.contact?.id}`)}
+          >
             Edit
           </button>
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">

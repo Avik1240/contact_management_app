@@ -19,6 +19,7 @@ function App() {
             <Route path="/">
               <Route index={true} element={<ContactPage />} />
               <Route path="create-contact" element={<ContactForm />} />
+              <Route path="edit-contact/:id" element={<ContactForm />} />
               <Route path="charts" element={<ChartAndMapsPage />} />
             </Route>
           </Routes>

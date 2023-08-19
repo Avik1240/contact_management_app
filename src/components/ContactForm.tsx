@@ -1,30 +1,29 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { addContact } from "../store/slices/contactsSlice";
-
-interface CreateContactFormProps {
-  contact?: IFormState;
-}
+import { addContact, updateContact } from "../store/slices/contactsSlice";
+import { RootState } from "../store";
 
 export interface IFormState {
   id: string;
-  firstName: string;
-  lastName: string;
-  status: string;
+  firstName: string | undefined;
+  lastName: string | undefined;
+  status: string | undefined;
 }
 
 export interface IFormError {
   errorText: string;
 }
 
-const CreateContactForm: React.FC<CreateContactFormProps> = (props) => {
+const CreateContactForm: React.FC = () => {
+  const { id } = useParams();
+  const { contactList } = useSelector((state: RootState) => state.contact);
   const [form, setForm] = useState<IFormState>({
     id: uuidv4(),
-    firstName: props?.contact?.firstName || "",
-    lastName: props?.contact?.lastName || "",
-    status: props?.contact?.status || "active",
+    firstName: "",
+    lastName: "",
+    status: "active",
   });
   const [error, setError] = useState<IFormError>({
     errorText: "",
@@ -32,6 +31,18 @@ const CreateContactForm: React.FC<CreateContactFormProps> = (props) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (id) {
+      const foundContact = contactList.find((contact) => contact.id === id);
+      if (!foundContact) {
+        setError({
+          errorText: `No user found with id ${id}`,
+        });
+      }
+      setForm(foundContact);
+    }
+  }, [id, contactList]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError((prev) => {
@@ -45,22 +56,26 @@ const CreateContactForm: React.FC<CreateContactFormProps> = (props) => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      !form.firstName.trim().length ||
-      !form.lastName.trim().length ||
-      !form.status.trim().length
+      !form?.firstName?.trim().length ||
+      !form?.lastName?.trim().length ||
+      !form?.status?.trim().length
     ) {
       setError((prev) => {
         return { ...prev, errorText: "All text fields are required" };
       });
     }
-    dispatch(addContact(form));
+    if (id) {
+      dispatch(updateContact(form));
+    } else {
+      dispatch(addContact(form));
+    }
     navigate("/");
   };
 
   return (
     <>
       <h1 className="flex flex-col justify-center items-center mt-6 text-4xl">
-        Create Contact Screen
+        {id ? "Edit Contact Screen" : "Create Contact Screen"}
       </h1>
       <form
         className="flex flex-col justify-center items-center mt-10 gap-8"
@@ -75,7 +90,7 @@ const CreateContactForm: React.FC<CreateContactFormProps> = (props) => {
             type="text"
             name="firstName"
             onChange={handleInputChange}
-            value={form.firstName}
+            value={form?.firstName}
             className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </label>
@@ -88,7 +103,7 @@ const CreateContactForm: React.FC<CreateContactFormProps> = (props) => {
             type="text"
             name="lastName"
             onChange={handleInputChange}
-            value={form.lastName}
+            value={form?.lastName}
             className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </label>
@@ -127,7 +142,7 @@ const CreateContactForm: React.FC<CreateContactFormProps> = (props) => {
           type="submit"
           className="border rounded-lg px-6 py-3 bg-blue-700 hover:bg-blue-400 dar:hover:text-white text-white"
         >
-          {props?.contact?.id ? "Edit Contact" : "Save Contact"}
+          {id ? "Edit Contact" : "Save Contact"}
         </button>
       </form>
     </>
