@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { MdCancel } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../store";
+import ContactList from "../components/ContactList";
 
 const ContactPage: React.FC = () => {
   const { contactList } = useSelector((state: RootState) => state.contact);
@@ -18,7 +19,7 @@ const ContactPage: React.FC = () => {
           Create Contact
         </button>
         {contactList?.length > 0 ? (
-          ""
+          <ContactList contactList={contactList} />
         ) : (
           <div className="flex font-bold text-lg gap-6 border border-black p-8">
             <div>

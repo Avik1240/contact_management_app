@@ -4,7 +4,7 @@ import ContactPage from "./pages/ContactPage";
 import ChartAndMapsPage from "./pages/ChartsAndMapsPage";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
-import CreateContactForm from "./components/CreateContactForm";
+import ContactForm from "./components/ContactForm";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Routes>
             <Route path="/">
               <Route index={true} element={<ContactPage />} />
-              <Route path="create-contact" element={<CreateContactForm />} />
+              <Route path="create-contact" element={<ContactForm />} />
               <Route path="charts" element={<ChartAndMapsPage />} />
             </Route>
           </Routes>

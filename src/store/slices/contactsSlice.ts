@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface contactListInitialState {
-  contactList: object[];
+  contactList: Array<any>;
 }
 
 const initialState: contactListInitialState = {
